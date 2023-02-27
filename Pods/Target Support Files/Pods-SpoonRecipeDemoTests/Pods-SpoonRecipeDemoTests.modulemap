@@ -1,0 +1,6 @@
+framework module Pods_SpoonRecipeDemoTests {
+  umbrella header "Pods-SpoonRecipeDemoTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

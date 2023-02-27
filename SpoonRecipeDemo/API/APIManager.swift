@@ -6,78 +6,91 @@
 //
 
 import Foundation
-import Combine
-
 class APIManager {
     static let shared = APIManager()
-    
+
     private let baseURL = "https://api.spoonacular.com"
-    private let apiKey = "b10544a5bea14545a2eea74f84bc977a"
-    private let session: URLSession
-    
-    private init() {
-        self.session = URLSession(configuration: .default)
-    }
-    
-    func getRecipes(completion: @escaping (Result<[Recipe], APIError>) -> Void) {
-        let endpoint = "/recipes/random"
-        let parameters: [String: Any] = [
-            "number": 20,
-            "apiKey": apiKey
-        ]
-        let url = buildURL(endpoint: endpoint, parameters: parameters)
-        let request = URLRequest(url: url)
-        session.dataTask(with: request) { data, response, error in
-            if let data = data, let recipesResponse = try? JSONDecoder().decode(RecipesResponse.self, from: data) {
-                completion(.success(recipesResponse.recipes))
-            } else if let error = error {
-                completion(.failure(.networkError(error)))
-            } else {
-                completion(.failure(.unknownError))
-            }
-        }.resume()
-    }
-    
-    func searchRecipes(keyword: String, completion: @escaping (Result<[Recipe], APIError>) -> Void) {
-        let endpoint = "/recipes/complexSearch"
-        let parameters: [String: Any] = [
-                    "query": keyword,
-                    "maxFat": 25,
-                    "number": 10,
-                    "apiKey": apiKey
-                ]
-        let url = buildURL(endpoint: endpoint, parameters: parameters)
-        let request = URLRequest(url: url)
-        session.dataTask(with: request) { data, response, error in
-            if let data = data, let recipesResponse = try? JSONDecoder().decode(RecipesSearchResponse.self, from: data) {
-                completion(.success(recipesResponse.recipes))
-            } else if let error = error {
-                completion(.failure(.networkError(error)))
-            } else {
-                completion(.failure(.unknownError))
-            }
-        }.resume()
-    }
-    
-    private func buildURL(endpoint: String, parameters: [String: Any]) -> URL {
-        let queryItems = parameters.map { key, value in
+    private let apiKey = "d518055041dd40d890061b496c1f705a"
+
+    private func url(endpoint: String, parameters: [String: Any]) -> URL {
+        var components = URLComponents(string: "\(baseURL)\(endpoint)")!
+        components.queryItems = parameters.map { key, value in
             URLQueryItem(name: key, value: "\(value)")
         }
-        var urlComponents = URLComponents(string: baseURL + endpoint)!
-        urlComponents.queryItems = queryItems
-        return urlComponents.url!
+        return components.url!
+    }
+
+    func fetchRecipes(endpoint: String, parameters: [String: Any], completion: @escaping (Result<[Recipe], APIError>) -> Void) {
+        let keyParameter: [String: Any] = ["apiKey": apiKey]
+        let params = keyParameter.merging(parameters) { $1 }
+        
+        let url = self.url(endpoint: endpoint, parameters: params)
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                completion(.failure(.networkError(error!)))
+                return
+            }
+            do {
+                let decoder = JSONDecoder()
+                switch endpoint {
+                case Endpoint.randomRecipes :
+                    let recipesResponse = try decoder.decode(RecipesResponse.self, from: data)
+                    completion(.success(recipesResponse.recipes))
+                case Endpoint.searchRecipes:
+                    let recipesResponse = try decoder.decode(RecipesSearchResponse.self, from: data)
+                    completion(.success(recipesResponse.results))
+                default:
+                    completion(.failure(.networkError(error!)))
+                }
+            } catch {
+                completion(.failure(.networkError(error)))
+            }
+        }.resume()
+    }
+
+    func getRecipe(identifier: Int, completion: @escaping (Result<Recipe, APIError>) -> Void) {
+        let endpoint = "/recipes/\(identifier)/information"
+        let parameters: [String: Any] = ["apiKey": apiKey]
+        let url = self.url(endpoint: endpoint, parameters: parameters)
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                completion(.failure(.networkError(error!)))
+                return
+            }
+
+            do {
+                let decoder = JSONDecoder()
+                let recipe = try decoder.decode(Recipe.self, from: data)
+                completion(.success(recipe))
+            } catch {
+                completion(.failure(.networkError(error)))
+            }
+        }.resume()
     }
 }
 
 enum APIError: Error {
     case networkError(Error)
-    case unknownError
 }
 
-struct RecipesResponse: Decodable {
-    let recipes: [Recipe]
+enum Endpoint {
+    static let randomRecipes = "/recipes/random"
+    static let searchRecipes = "/recipes/complexSearch"
 }
 
 struct RecipesSearchResponse: Decodable {
+    let offset: Int
+    let number: Int
+    let results: [Recipe]
+    let totalResults: Int
+}
+
+struct RecipesResponse: Decodable {
     let recipes: [Recipe]
 }

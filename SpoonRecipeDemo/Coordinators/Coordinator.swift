@@ -29,9 +29,9 @@ class Coordinator: ObservableObject {
     }
     
     func showRecipeDetailView(for recipe: Recipe) {
-        //let recipeDetailView = RecipeView(recipe: recipe, viewModel: RecipeDetailViewModel(recipe: recipe, coordinator: self))
-        //let viewController = UIHostingController(rootView: recipeDetailView)
-        //navigationController?.pushViewController(viewController, animated: true)
+        let recipeDetailView = RecipeDetailView(recipe: recipe)
+        let viewController = UIHostingController(rootView: recipeDetailView)
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
     func showSearchView() {

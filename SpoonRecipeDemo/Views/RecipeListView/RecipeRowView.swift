@@ -13,7 +13,7 @@ struct RecipeRowView: View {
     
     var body: some View {
         HStack(alignment: .center) {
-            if let imageURL = recipe.imageURL {
+            if let imageURL = URL(string: recipe.image ?? "") {
                 AsyncImage(url: imageURL) { phase in
                             switch phase {
                             case .success(let image):
@@ -39,7 +39,7 @@ struct RecipeRowView: View {
             VStack(alignment: .leading) {
                 Text(recipe.title)
                     .font(.headline)
-                Text(recipe.summary)
+                Text(recipe.summary ?? "")
                     .font(.subheadline)
                     .lineLimit(2)
             }

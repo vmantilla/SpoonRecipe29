@@ -23,7 +23,9 @@ class SearchViewModel: ObservableObject {
         self.errorMessage = ""
         self.isLoading = true
         
-        APIManager.shared.searchRecipes(keyword: keyword) { result in
+        APIManager.shared.fetchRecipes(
+            endpoint: Endpoint.searchRecipes,
+            parameters: ["query": keyword,"number": 20]) { result in
             DispatchQueue.main.async {
                 self.isLoading = false
                 switch result {

@@ -41,7 +41,7 @@ class PersistenceManager {
         let favoriteRecipe = FavoriteRecipe(context: context)
         favoriteRecipe.id = Int32(recipe.id)
         favoriteRecipe.title = recipe.title
-        favoriteRecipe.imageURL = recipe.imageURL?.absoluteString
+        favoriteRecipe.image = recipe.image
         favoriteRecipe.summary = recipe.summary
         saveContext()
     }
@@ -61,6 +61,12 @@ class PersistenceManager {
         let fetchRequest: NSFetchRequest<FavoriteRecipe> = FavoriteRecipe.fetchRequest()
         let favoriteRecipes = try? context.fetch(fetchRequest)
         return favoriteRecipes?.map { Recipe(id: Int($0.id),
-                                             title: $0.title ?? "", summary: $0.summary ?? "", imageURL: URL(string: $0.imageURL ?? "")) } ?? []
+                                              title: $0.title ?? "",
+                                              summary: $0.summary ?? "",
+                                              image: $0.image ?? "",
+                                              nutrition: Nutrition(nutrients: []),
+                                              extendedIngredients: [],
+                                              analyzedInstructions: []) } ?? []
+
     }
 }
