@@ -6,14 +6,21 @@
 //
 
 import UIKit
+import SwiftUI
 
 class ViewController: UIViewController {
-
+    
+    var coordinator: Coordinator?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        let navigationController = UINavigationController()
+        let window = UIApplication.shared.windows.first!
+        window.rootViewController = navigationController
+        
+        // Creamos una instancia del coordinator y lo iniciamos
+        self.coordinator = Coordinator(navigationController: navigationController)
+        self.coordinator?.start()
     }
-
-
 }
-
