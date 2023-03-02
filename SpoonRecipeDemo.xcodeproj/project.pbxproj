@@ -16,7 +16,6 @@
 		7043B1CF29ACDD66006D45DA /* SpoonRecipeDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7043B1CD29ACDD66006D45DA /* SpoonRecipeDemo.xcdatamodeld */; };
 		7043B1D129ACDD68006D45DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7043B1D029ACDD68006D45DA /* Assets.xcassets */; };
 		7043B1D429ACDD68006D45DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7043B1D229ACDD68006D45DA /* LaunchScreen.storyboard */; };
-		7043B1DF29ACDD68006D45DA /* SpoonRecipeDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7043B1DE29ACDD68006D45DA /* SpoonRecipeDemoTests.swift */; };
 		7043B1E929ACDD68006D45DA /* SpoonRecipeDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7043B1E829ACDD68006D45DA /* SpoonRecipeDemoUITests.swift */; };
 		7043B1EB29ACDD68006D45DA /* SpoonRecipeDemoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7043B1EA29ACDD68006D45DA /* SpoonRecipeDemoUITestsLaunchTests.swift */; };
 		7043B1F929ACDD87006D45DA /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7043B1F829ACDD87006D45DA /* Coordinator.swift */; };
@@ -38,6 +37,9 @@
 		C4C2D38729AD4C43009361C0 /* RecipeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C2D38629AD4C43009361C0 /* RecipeDetailView.swift */; };
 		C4C2D38929AD4D39009361C0 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C2D38829AD4D39009361C0 /* Recipe.swift */; };
 		C4FF956C29B01F5A009AA4FB /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FF956B29B01F5A009AA4FB /* BaseViewController.swift */; };
+		C4FF956E29B02D05009AA4FB /* RecipeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FF956D29B02D05009AA4FB /* RecipeViewModelTests.swift */; };
+		C4FF957029B02D20009AA4FB /* MockAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FF956F29B02D20009AA4FB /* MockAPIManager.swift */; };
+		C4FF957229B037CF009AA4FB /* SearchViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FF957129B037CF009AA4FB /* SearchViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,7 +74,6 @@
 		7043B1D329ACDD68006D45DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7043B1D529ACDD68006D45DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7043B1DA29ACDD68006D45DA /* SpoonRecipeDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpoonRecipeDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		7043B1DE29ACDD68006D45DA /* SpoonRecipeDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpoonRecipeDemoTests.swift; sourceTree = "<group>"; };
 		7043B1E429ACDD68006D45DA /* SpoonRecipeDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpoonRecipeDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7043B1E829ACDD68006D45DA /* SpoonRecipeDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpoonRecipeDemoUITests.swift; sourceTree = "<group>"; };
 		7043B1EA29ACDD68006D45DA /* SpoonRecipeDemoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpoonRecipeDemoUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -98,6 +99,9 @@
 		C4C2D38629AD4C43009361C0 /* RecipeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailView.swift; sourceTree = "<group>"; };
 		C4C2D38829AD4D39009361C0 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		C4FF956B29B01F5A009AA4FB /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		C4FF956D29B02D05009AA4FB /* RecipeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewModelTests.swift; sourceTree = "<group>"; };
+		C4FF956F29B02D20009AA4FB /* MockAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIManager.swift; sourceTree = "<group>"; };
+		C4FF957129B037CF009AA4FB /* SearchViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModelTests.swift; sourceTree = "<group>"; };
 		C53BBC572E25506DF6F68790 /* Pods-SpoonRecipeDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpoonRecipeDemoTests.debug.xcconfig"; path = "Target Support Files/Pods-SpoonRecipeDemoTests/Pods-SpoonRecipeDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -175,7 +179,9 @@
 		7043B1DD29ACDD68006D45DA /* SpoonRecipeDemoTests */ = {
 			isa = PBXGroup;
 			children = (
-				7043B1DE29ACDD68006D45DA /* SpoonRecipeDemoTests.swift */,
+				C4FF956D29B02D05009AA4FB /* RecipeViewModelTests.swift */,
+				C4FF956F29B02D20009AA4FB /* MockAPIManager.swift */,
+				C4FF957129B037CF009AA4FB /* SearchViewModelTests.swift */,
 			);
 			path = SpoonRecipeDemoTests;
 			sourceTree = "<group>";
@@ -548,7 +554,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7043B1DF29ACDD68006D45DA /* SpoonRecipeDemoTests.swift in Sources */,
+				C4FF956E29B02D05009AA4FB /* RecipeViewModelTests.swift in Sources */,
+				C4FF957029B02D20009AA4FB /* MockAPIManager.swift in Sources */,
+				C4FF957229B037CF009AA4FB /* SearchViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

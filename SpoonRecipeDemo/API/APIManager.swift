@@ -6,11 +6,17 @@
 //
 
 import Foundation
-class APIManager {
+
+protocol APIManagerProtocol {
+    func fetchRecipes(endpoint: String, parameters: [String: Any], completion: @escaping (Result<[Recipe], APIError>) -> Void)
+    func getRecipe(identifier: Int, completion: @escaping (Result<Recipe, APIError>) -> Void)
+}
+
+class APIManager: APIManagerProtocol {
     static let shared = APIManager()
 
     private let baseURL = "https://api.spoonacular.com"
-    private let apiKey = "b10544a5bea14545a2eea74f84bc977a"
+    private let apiKey = "d518055041dd40d890061b496c1f705a"
 
     private func url(endpoint: String, parameters: [String: Any]) -> URL {
         var components = URLComponents(string: "\(baseURL)\(endpoint)")!
@@ -23,7 +29,7 @@ class APIManager {
     func fetchRecipes(endpoint: String, parameters: [String: Any], completion: @escaping (Result<[Recipe], APIError>) -> Void) {
         let keyParameter: [String: Any] = ["apiKey": apiKey]
         let params = keyParameter.merging(parameters) { $1 }
-        
+
         let url = self.url(endpoint: endpoint, parameters: params)
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -77,6 +83,7 @@ class APIManager {
 
 enum APIError: Error {
     case networkError(Error)
+    case serverError(message: String)
 }
 
 enum Endpoint {

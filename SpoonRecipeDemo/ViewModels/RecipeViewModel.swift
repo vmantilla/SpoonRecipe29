@@ -12,13 +12,17 @@ class RecipeViewModel: ObservableObject {
     @Published var recipes: [Recipe] = []
     @Published var errorMessage: String = ""
     @Published var isLoading = false
-    init() {
+    
+    let apiManager: APIManagerProtocol
+    
+    init(apiManager: APIManagerProtocol = APIManager()) {
+        self.apiManager = apiManager
         fetchRecipes()
     }
     
     func fetchRecipes() {
         self.isLoading = true
-        APIManager.shared.fetchRecipes(endpoint: Endpoint.randomRecipes, parameters: ["number": 20]) { result in
+        apiManager.fetchRecipes(endpoint: Endpoint.randomRecipes, parameters: ["number": 20]) { result in
             DispatchQueue.main.async {
                 self.isLoading = false
                 switch result {

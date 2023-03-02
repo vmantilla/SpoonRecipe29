@@ -15,6 +15,12 @@ class SearchViewModel: ObservableObject {
     @Published var errorMessage = ""
     @Published var isLoading = false
     
+    let apiManager: APIManagerProtocol
+    
+    init(apiManager: APIManagerProtocol = APIManager()) {
+        self.apiManager = apiManager
+    }
+    
     func searchRecipes() {
         guard !keyword.isEmpty else {
             return
@@ -23,7 +29,7 @@ class SearchViewModel: ObservableObject {
         self.errorMessage = ""
         self.isLoading = true
         
-        APIManager.shared.fetchRecipes(
+        apiManager.fetchRecipes(
             endpoint: Endpoint.searchRecipes,
             parameters: ["query": keyword,"number": 20]) { result in
             DispatchQueue.main.async {

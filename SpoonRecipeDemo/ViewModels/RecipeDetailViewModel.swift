@@ -13,11 +13,17 @@ class RecipeDetailViewModel: ObservableObject {
     @Published var errorMessage: String = ""
     @Published var isLoading = false
     
+    let apiManager: APIManagerProtocol
+    
+    init(apiManager: APIManagerProtocol = APIManager()) {
+        self.apiManager = apiManager
+    }
+    
     func getRecipeDetails(for recipe: Recipe) {
         self.errorMessage = ""
         self.isLoading = true
         
-        APIManager.shared.getRecipe(identifier: recipe.id) { result in
+        apiManager.getRecipe(identifier: recipe.id) { result in
             DispatchQueue.main.async {
                 self.isLoading = false
                 switch result {
