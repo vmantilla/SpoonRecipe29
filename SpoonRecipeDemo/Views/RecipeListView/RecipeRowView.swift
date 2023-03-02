@@ -15,33 +15,30 @@ struct RecipeRowView: View {
         HStack(alignment: .center) {
             if let imageURL = URL(string: recipe.image ?? "") {
                 AsyncImage(url: imageURL) { phase in
-                            switch phase {
-                            case .success(let image):
-                                image
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                            case .empty:
-                                Image(systemName: "photo")
-                            case .failure:
-                                Image(systemName: "exclamationmark.icloud")
-                            @unknown default:
-                                EmptyView()
-                            }
+                    switch phase {
+                    case .success(let image):
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                    case .empty:
+                        Image(systemName: "photo")
+                    case .failure:
+                        Image(systemName: "exclamationmark.icloud")
+                    @unknown default:
+                        EmptyView()
                     }
-                    .scaledToFill()
-                    .frame(width: 120, height: 80)
+                }
+                .scaledToFill()
+                .frame(width: 120, height: 80)
             } else {
                 Image(systemName: "photo")
                     .resizable()
                     .frame(width: 120, height: 80)
             }
-            Spacer()
             VStack(alignment: .leading) {
                 Text(recipe.title)
                     .font(.headline)
-                Text(recipe.summary ?? "")
-                    .font(.subheadline)
-                    .lineLimit(2)
+                    .foregroundColor(.black)
             }
         }
         .padding(.vertical, 8)

@@ -15,7 +15,7 @@ class PersistenceManager {
     private init() {}
     
     lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "FavoriteRecipe")
+        let container = NSPersistentContainer(name: "SpoonRecipeDemo")
         container.loadPersistentStores { (storeDescription, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
@@ -39,10 +39,9 @@ class PersistenceManager {
     func saveRecipe(_ recipe: Recipe) {
         let context = persistentContainer.viewContext
         let favoriteRecipe = FavoriteRecipe(context: context)
-        favoriteRecipe.id = Int32(recipe.id)
+        favoriteRecipe.id = String(recipe.id) 
         favoriteRecipe.title = recipe.title
         favoriteRecipe.image = recipe.image
-        favoriteRecipe.summary = recipe.summary
         saveContext()
     }
     
@@ -60,9 +59,8 @@ class PersistenceManager {
         let context = persistentContainer.viewContext
         let fetchRequest: NSFetchRequest<FavoriteRecipe> = FavoriteRecipe.fetchRequest()
         let favoriteRecipes = try? context.fetch(fetchRequest)
-        return favoriteRecipes?.map { Recipe(id: Int($0.id),
+        return favoriteRecipes?.map { Recipe(id: Int($0.id ?? "") ?? 0,
                                               title: $0.title ?? "",
-                                              summary: $0.summary ?? "",
                                               image: $0.image ?? "",
                                               nutrition: Nutrition(nutrients: []),
                                               extendedIngredients: [],

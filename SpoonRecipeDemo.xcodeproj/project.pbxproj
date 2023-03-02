@@ -37,6 +37,7 @@
 		C4C2D38529AD4BCD009361C0 /* RecipeDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C2D38429AD4BCD009361C0 /* RecipeDetailViewModel.swift */; };
 		C4C2D38729AD4C43009361C0 /* RecipeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C2D38629AD4C43009361C0 /* RecipeDetailView.swift */; };
 		C4C2D38929AD4D39009361C0 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C2D38829AD4D39009361C0 /* Recipe.swift */; };
+		C4FF956C29B01F5A009AA4FB /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FF956B29B01F5A009AA4FB /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,7 @@
 		C4C2D38429AD4BCD009361C0 /* RecipeDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewModel.swift; sourceTree = "<group>"; };
 		C4C2D38629AD4C43009361C0 /* RecipeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailView.swift; sourceTree = "<group>"; };
 		C4C2D38829AD4D39009361C0 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		C4FF956B29B01F5A009AA4FB /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C53BBC572E25506DF6F68790 /* Pods-SpoonRecipeDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpoonRecipeDemoTests.debug.xcconfig"; path = "Target Support Files/Pods-SpoonRecipeDemoTests/Pods-SpoonRecipeDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -204,6 +206,7 @@
 				C4C2D37429AD19CE009361C0 /* SearchView.swift */,
 				C4C2D37629AD1A28009361C0 /* MainView.swift */,
 				C4C2D38629AD4C43009361C0 /* RecipeDetailView.swift */,
+				C4FF956B29B01F5A009AA4FB /* BaseViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -529,6 +532,7 @@
 				7043B1C929ACDD66006D45DA /* ViewController.swift in Sources */,
 				7043B20329ACDE0C006D45DA /* RecipeViewModel.swift in Sources */,
 				7043B1F929ACDD87006D45DA /* Coordinator.swift in Sources */,
+				C4FF956C29B01F5A009AA4FB /* BaseViewController.swift in Sources */,
 				C4C2D38929AD4D39009361C0 /* Recipe.swift in Sources */,
 				C4C2D38729AD4C43009361C0 /* RecipeDetailView.swift in Sources */,
 				C4C2D37729AD1A28009361C0 /* MainView.swift in Sources */,

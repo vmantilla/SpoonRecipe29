@@ -41,7 +41,7 @@ struct RecipeListView: View {
             }
             List(viewModel.recipes) { recipe in
                 Button(action: {
-                    self.coordinator.showFavoritesView()
+                    self.coordinator.showRecipeDetailView(for: recipe)
                 }) {
                     RecipeRowView(recipe: recipe)
                 }

@@ -13,8 +13,12 @@ struct MainView: View {
     @StateObject var searchViewModel = SearchViewModel()
     @StateObject var favoritesViewModel = FavoritesViewModel()
     
-    @StateObject var coordinator = Coordinator(navigationController: UINavigationController())
+    var coordinator: Coordinator
 
+        init(coordinator: Coordinator) {
+            self.coordinator = coordinator
+        }
+    
     var body: some View {
         TabView {
             RecipeListView(viewModel: recipeViewModel)
@@ -39,7 +43,7 @@ struct MainView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
+        MainView(coordinator: Coordinator(navigationController: UINavigationController()))
     }
     
 }

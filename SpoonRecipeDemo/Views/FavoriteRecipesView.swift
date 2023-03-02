@@ -18,6 +18,7 @@ struct FavoriteRecipesView: View {
                 .contextMenu {
                     Button(action: {
                         viewModel.removeFavoriteRecipe(recipe)
+                        viewModel.fetchFavoriteRecipes()
                     }) {
                         Text("Remove from Favorites")
                         Image(systemName: "trash")
@@ -26,6 +27,9 @@ struct FavoriteRecipesView: View {
                 .onTapGesture {
                     self.coordinator.showRecipeDetailView(for: recipe)
                 }
+        }
+        .onAppear {
+            viewModel.fetchFavoriteRecipes()
         }
         .navigationTitle("Favorite Recipes")
     }

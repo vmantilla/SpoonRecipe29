@@ -9,29 +9,16 @@ import SwiftUI
 
 class Coordinator: ObservableObject {
     @Published var isShowingSplash: Bool = true
-    var navigationController: UINavigationController?
+    var navigationController: UIViewController?
     
-    init(navigationController: UINavigationController?) {
+    init(navigationController: UIViewController?) {
         self.navigationController = navigationController
-    }
-    
-    func start() {
-        let splashView = SplashView()
-        let viewController = UIHostingController(rootView: splashView)
-        navigationController?.pushViewController(viewController, animated: false)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            self.isShowingSplash = false
-            let contentView = MainView()
-            let viewController = UIHostingController(rootView: contentView)
-            self.navigationController?.pushViewController(viewController, animated: false)
-        }
     }
     
     func showRecipeDetailView(for recipe: Recipe) {
         let recipeDetailView = RecipeDetailView(recipe: recipe)
         let viewController = UIHostingController(rootView: recipeDetailView)
-        navigationController?.pushViewController(viewController, animated: true)
+        navigationController?.present(viewController, animated: true)
     }
     
     func showSearchView() {
@@ -43,6 +30,6 @@ class Coordinator: ObservableObject {
     func showFavoritesView() {
         let favoritesView = FavoriteRecipesView(viewModel: FavoritesViewModel())
         let viewController = UIHostingController(rootView: favoritesView)
-        navigationController?.pushViewController(viewController, animated: true)
+        navigationController?.present(viewController, animated: true)
     }
 }

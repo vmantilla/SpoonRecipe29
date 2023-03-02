@@ -10,17 +10,31 @@ import SwiftUI
 
 class ViewController: UIViewController {
     
-    var coordinator: Coordinator?
+    var coordinator: Coordinator!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let navigationController = UINavigationController()
-        let window = UIApplication.shared.windows.first!
-        window.rootViewController = navigationController
-        
-        // Creamos una instancia del coordinator y lo iniciamos
-        self.coordinator = Coordinator(navigationController: navigationController)
-        self.coordinator?.start()
+        var coordinator = Coordinator(navigationController: self)
+        // Wait for 3 seconds and replace the view
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            // Create the SwiftUI view
+            let swiftUIView = MainView(coordinator: coordinator)
+
+            // Wrap the SwiftUI view in a UIHostingController
+            let hostingController = UIHostingController(rootView: swiftUIView)
+
+            // Add the hosting controller as a child view controller of this view controller
+            self.addChild(hostingController)
+
+            // Add the hosting controller's view to this view controller's view hierarchy
+            self.view.addSubview(hostingController.view)
+
+            // Set the hosting controller's frame to the bounds of this view controller's view
+            hostingController.view.frame = self.view.bounds
+
+            // Tell the hosting controller that it has been moved to the current view controller
+            hostingController.didMove(toParent: self)
+        }
     }
 }

@@ -10,7 +10,7 @@ class APIManager {
     static let shared = APIManager()
 
     private let baseURL = "https://api.spoonacular.com"
-    private let apiKey = "d518055041dd40d890061b496c1f705a"
+    private let apiKey = "b10544a5bea14545a2eea74f84bc977a"
 
     private func url(endpoint: String, parameters: [String: Any]) -> URL {
         var components = URLComponents(string: "\(baseURL)\(endpoint)")!

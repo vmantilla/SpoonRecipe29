@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:FavoriteRecipe+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:FavoriteRecipe+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
       location = "group:SpoonRecipeDemo.xcodeproj">
    </FileRef>
    <FileRef
